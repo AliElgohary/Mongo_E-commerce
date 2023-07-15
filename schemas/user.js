@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
     required: "Email address is required",
     validate: [validateEmail, "Please fill a valid email address"],
   },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }]
 });
 export const User = mongoose.model('users', userSchema);
 

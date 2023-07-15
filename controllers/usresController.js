@@ -33,3 +33,4 @@ export const login = async (req, res, next) => {
   const token = Jwt.sign(payload, process.env.JWT_SECRET);
   res.send({ ...payload, token });
 };
+
