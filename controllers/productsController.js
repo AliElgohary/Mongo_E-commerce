@@ -52,7 +52,11 @@ export const Order = async (req, res, next) => {
   if (existingProduct) {
     const filter = { _id: _id };
     const user = await User.findOne(filter);
-    user.products.push(productData._id);
+    const productArray = user.products;
+    if(productArray.includes(existingProduct._id)){
+      return res.send(`Product with ID ${_id} already exists`);
+    }
+    productArray.push(productData._id);
     await user.save();
     res.send(user);
   }
